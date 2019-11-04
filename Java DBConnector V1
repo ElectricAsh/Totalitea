@@ -1,0 +1,160 @@
+package Util;
+
+import java.sql.Connection; //Need this to connect to database. 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+public class DBConnector {
+	private Connection conn; //Field value of connection.
+	
+	
+	
+	public DBConnector() {
+		conn = null; //sets connection to oracle driver as null when constructed. Used later on to be accessed in connect method.
+		
+	}
+
+	public void loadDriver() {
+		System.out.println("Trying to load driver...");
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver"); // This searches for the jdbc oracle driver in the buildpath.
+		} catch (ClassNotFoundException e) {
+			System.err.println("Couldn't find the driver!");
+			e.printStackTrace(); //Prints build path where error was encountered.
+			//How to exit program V\\
+			System.exit(1); //1 forces an exit of the server.\\ //If not found, exit method.
+		}
+		System.out.println("Driver lock, loaded and ready to go!");
+	}
+	
+	/**
+	 * This method connects the user to the database.
+	 * To login, the user can make a text document with their login details in it, and add it to the ConnectorParser.
+	 * If done correctly, the user can automatically log in the database each time the java code needs to be tested.
+	 * If incorrect details are logged, an exception error is executed and informs the user of the issue.
+	 */
+	public void connect() {
+		
+		//IMPORT YOUR OWN PASSWORD\\
+		String i = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String y = "SYS AS SYSDBA";
+		String x = "babs20";
+		
+		try {
+			conn = DriverManager.getConnection(i, //Buildpath for server you are connecting too. //jdbc:oracle:thin:@localhost:1521:orcl
+												y, // Where you type 'CONNECT' to access the server. //SYS AS SYSDBA
+												x); // Password to access the server. //babs20
+		} catch (SQLException sqle) {
+//			System.out.println("Invalid password.");
+			sqle.printStackTrace();
+			//Nothing else we can do, exit programme.
+			System.exit(1);
+		}
+		System.out.println("Connected to driver! We're in the system lads!");
+	}	
+	
+	public ResultSet runSqlQuery(String query) throws SQLException {
+		ResultSet rs = null;
+		Statement stmt = null;
+		
+		stmt = conn.createStatement(); 
+		//This creates a statement object able to send sql statements to the database.
+		rs = stmt.executeQuery(query); 
+		//Executes a given sql statement in params.
+		
+		return rs;
+	}
+	
+	//print the query output // SELECT * FROM x 
+	
+	/**
+	 * This method prints the results from executed querys in an organised fashion.
+	 * The results of a query are inserted into the parameter, in which ResultSetMetaData is used
+	 * to access the meta data of the results.
+	 * This allows the code to access the amount of columns.
+	 * While there is a next row, for the amount of columns counted get the string of the rows value,
+	 * and print the column name alongside the rows value. 
+	 * If an error is found within the method, the exception try and catch will print out the trace and problem.
+	 */
+	
+	public void printResults(ResultSet results) {
+		try {
+			ResultSetMetaData rsmd = results.getMetaData();
+			int count = rsmd.getColumnCount();
+			while(results.next()) {
+				// The column count starts from 1
+				for (int i = 1; i <= count; i++ ) {		  
+				  String rowValue = results.getString(i);
+				  System.out.println(rsmd.getColumnName(i) + " " + rowValue);
+				 }	
+			System.out.println("\n");
+			}
+		} catch (SQLException e) {
+			System.err.println("Problem printing results with ResultSet.");
+			e.printStackTrace();
+		}
+	}
+	
+		/**
+		 * This method checks the login details against our database user table.
+		 * It prepares an SQL query, in which for each username and password that equals the parameters, count it.
+		 * Ideally, you would only want 1 result to be counted. 
+		 * @param username
+		 * @param pwd
+		 * @return
+		 */
+	public boolean loginCheck(String username, String pwd) {
+		
+	    try {
+	    	String sql = "SELECT COUNT(*) as CNT FROM Users WHERE Username = ? AND Password = ?"; 
+	    	//String doNotExecute = "SELECT COUNT(*) FROM Users WHERE Username = '" + username + "' AND Password = '" + pwd + "'";
+	    	//System.out.println(doNotExecute);
+	    	
+	    	PreparedStatement statement = conn.prepareStatement(sql);
+	    	statement.setString(1, username);
+			statement.setString(2, pwd);
+			
+			ResultSet result = statement.executeQuery();
+			
+			System.out.println("output is");
+			result.next();
+			int count = result.getInt("CNT");
+			System.out.println(count);
+			
+			System.out.println("now printing result....");
+			printResults(result);
+			
+			//System.out.println(result);
+			
+			if(count == 1) {
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Oh no...");
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * This method closes the connection.
+	 */
+	public void closeConnection() {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println("Unable to close the connection.");
+			e.printStackTrace();
+		}
+	}
+}
