@@ -1,0 +1,71 @@
+Order Screen:
+	-Shows order total
+	-Allows users to place an order
+		-Does this just show all products stored in ArrayList on-screen with prices added up once clicked?
+	-Purchase screen requesting credit card details and allows users to make payment
+		- How involved would this be? 
+		- Could we just make any numbers work? 
+		- Do we just show a message stating that payment has worked? 
+		- Do we need a function for saying payment is denied or will this never come up?
+		
+
+- Take weight and add price up of each item. Add this together for order total
+- 
+
+set of product trying to buy
+add up total cost of each item trying to buy
+
+sub total of individual products and grand total with postage etc.
+
+dont put much thought in to verfying credit card details\
+
+
+Click order from basket / redirects to other page
+Shows screen with order / prints out all information from table along with price
+Shows all items in basket on the page  / loops through arraylist and prints out values
+Will add up price of all items (takes price of each item * noOfItems then adds all together)
+Price appears at bottom along with adding on price with postage ( take weight of items and work out postage)
+Click buy basket / redirects to another page
+Sends user to credit card info page. / page with boxes to input information / information wont get stored?
+Can input any information and will send the user to a page saying transaction of 'price' is confirmed / redirects to page stating its bought
+
+
+-------------------------------------------------------------------------------------
+
+Take weight of each item and multiply by the quantity. Add up weight of all items
+if statement 
+	lower than 5kg then postage £1
+	between 6 and 10kg is £10
+	over 10kg is £15
+	Displays total shipping cost to user - >>> this is to be done on order screen
+	
+	if order amount is greater than £100 then ignore weight 
+	
+-----------------------------------------------------------------------------
+
+users able to perform new search already a feature
+
+----------------------------------------------------------------------
+System administrators are able to add new items to the catalogue.
+	can add new items using SQL currently. maybe look in to website feature
+
+----------------------------------------------------------------------
+When an order is placed, a file containing order details and the delivery
+address is available for printing.
+	- maybe put information in to a text file
+	
+----------------------------------------------------------------------
+users receive confirmation emails after placing orders
+	- use PHP
+----------------------------------------------------------------------
+user registration screen will have the required information on screen
+	- can have a method adding this information to the database using input into
+	
+----------------------------------------------------------------------
+rating system could do nothing but highlight the stars 
+	
+
+
+
+
+

@@ -1,0 +1,41 @@
+Finding username and password:
+String sql = "SELECT * FROM users WHERE email = ? and password = ?";
+-gives back user and password
+-will return 0 rows if wrong "0 rows selected"
+-count number of rows selected which would return 0 or 1
+-if 0 then give back message stating invalid user/pass (redirect to login page)
+-if 1 then login and redirect to main page (Stuart stated something more complicated can be done?)
+--------------------------------------------------------------------------------------------------------
+Once logged in have username appear at top of page.
+
+Dont want to just redirect. might do something more complicated
+
+3rd party module for banking information?
+
+-------------------------------------------------------------------------
+Web server trying to run java
+Tomcat and java both need the classes
+shouldnt that be a password box by the way!?
+-------------------------------------------------------------------
+Report should be about 3 slides talking about business logic improvements
+----------------------------------------------------------------------------
+Testing login system
+- tests that correct user and password works
+- tests full caps username and correct password doesnt work
+----------------------------------------------------------------------------
+Make a session to track that logged in on different pages
+
+Take url(copy paste in to google chrome) that you need and demo in a web browser so no one sees errors appear in console
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Tomcat creates session. bundle of data held on server and cookie sent to client contains sessionid. anytime client goes to another page then ID comes back and knows its THAT person
+use the hashmap in tomcat or destroy and create another one - destroy it to log it out-in java- has api
+
+----------------------------------------
+
+ASK STUART/STEVE
+
+- What to say when presenting about code taking from lab tasks etc.
+- Display search results on java side
+- Are products stored in an ArrayList?
+
+

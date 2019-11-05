@@ -1,0 +1,29 @@
+Website:
+- Attractive and guide customers towards certain choices
+- Keep simple (unlike Amazon)
+- Username and password dont need to be restricted but should be unique
+- Client wanted social media login features
+- Ability to add items
+- Basic input for credit card details - possibly store details
+- Have search bar and filter(category) on side 
+
+Demographic:
+- Mid 20s to late 30s
+- Sells both premium and regular drinks.
+- UK Only
+
+Extra information:
+- Stock - Keep in mind they have set amount of stock. Assume pulling from their system 
+	but create a basic file with information and pull it from there (not a requirement)
+- Track when someone creates an account and the transactions that have taken place
+
+
+
+
+Question for client:
+
+- Amount to be purchased(in grams). Does each tea/coffee have a set gram amount								Do we want a few set values.       mayeb dont mention -> e.g (5grams=small-> 20grams=medium-> 40grams=large)
+and then buy a certain amount of each quantity
+OR 
+input quantity amount that client wants specifically and work out price from that
+	

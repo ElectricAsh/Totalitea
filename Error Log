@@ -1,0 +1,21 @@
+Error Log
+
+Class not found exception - Error due to ojdbc7 file. The file was in eclipse, Tomcat and not in the buildpath.
+	Having 2 ojdbc7 files is seen as equivalent as having none in terms of the program
+	
+	-------------------------------------
+
+Issue where could not get login feature to work 
+
+Process of checking:
+
+- Creating another string and printing out (select * from users where user = username and password = pwd)
+- Didnt work through Java but did work when running the query through cmd
+- Added in a sysout of "output is" it found steve and horse from user input but still didnt print information from table
+- Decided to run "select count(*) as cnd" -> "results.getint("cnd") -> result.next()
+	- Came back as 0 therefore java did not find any rows matching the information we inputted
+- Checked database where none of our queries were committed therefore java was only looking at an empty table
+- Added in commits and solved the problem
+
+
+----------------------------------------------------------
