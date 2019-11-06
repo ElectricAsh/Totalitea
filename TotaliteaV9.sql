@@ -135,7 +135,7 @@ BEGIN
 	insertProducts('Caffeinated', 'Americano', 'Hot water added to a shot of espresso', 'Essential nutrients and antioxidants', 83, 'Drink', 'Azera', 3.00, 100, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
 	insertProducts('Caffeinated', 'Latte Macchiato', 'Espresso topped with foamed milk', 'Improves a persons mood', 150, 'Drink', 'Tassimo', 3.98, 264, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
 	insertProducts('Caffeinated', 'Mocha', 'Like a latte, but with added chocolate flavoring', 'None', 165, 'Drink', 'Nescafe', 2.65, 233, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
-	insertProducts('Frosted cake', 'red velvet', 'Red velvet cake with a cream cheese frosting', 'None', 0, 'Cake', 'Sainsburys', 2.00, 350, 'no nuts', 'has dairy', 38.5, 10.2, aprod);
+	insertProducts('Frosted cake', 'Red velvet', 'Red velvet cake with a cream cheese frosting', 'None', 0, 'Cake', 'Sainsburys', 2.00, 350, 'no nuts', 'has dairy', 38.5, 10.2, aprod);
 	
 	insertUser('Stuart', '02-JUN-88', 'Stuart@hotmail.com', 'horse', '10 downing street London W7 1BW', 1, to_Date('01/11/2019 09:30:00', 'DD/MM/YYYY HH24:MI:SS'), auser, emcmsg);
 	DBMS_OUTPUT.PUT_LINE(emcmsg);
@@ -154,7 +154,7 @@ BEGIN
 	insertOrders(seq_orderid.nextval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));
 	insertProducts('Chocolate Cake', 'Belgian chocolate fudge cake', 'Chocolate cake topped with belgian chocolate buttercream', 'None', 0, 'Cake', 'Sainsburys', 2.75, 395, 'no nuts', 'has dairy', 115.2, 27.0, aprod);
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));
-	insertProducts('Caffeinated', 'Latte', 'Half coffe half milk', 'helps reduce celulite', 77, 'Drink', 'LavAzza', 13.93, 630, 'no nuts', 'has dairy', 55.8, 14.4, aprod);   
+	insertProducts('Caffeinated', 'Latte', 'Half coffee half milk', 'helps reduce celulite', 77, 'Drink', 'LavAzza', 13.93, 630, 'no nuts', 'has dairy', 55.8, 14.4, aprod);   
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));
 	
 	insertUser('Ashley', '14-Jan-67', 'Ashely.clennel@fawn.com', 'horns', '23 VillageDrive Derby DE7 22A', 1, to_Date('05/11/2019 23:30:00', 'DD/MM/YYYY HH24:MI:SS'), auser, emcmsg);
