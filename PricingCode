@@ -1,0 +1,39 @@
+	public double calculateBasket() {
+		ArrayList<Drinks> basket = getBasket();
+		for(Product product: basket) {
+			int quantity = product.getQuantity();
+			double price1 = product.getPrice();
+			price = price + (price1 * quantity);
+			
+			
+			
+		}
+		if(price >= 100.00) {
+			return price
+		}
+		else {
+		
+		return price + ;
+		calculatePostage();
+		}
+		}
+	
+	public int calculatePostage() {
+		double postage = 0;
+		ArrayList<Product> basket = getBasket();
+		for(Product product: basket) {
+		int weight = product.getWeight();
+		weight += weight;
+	}
+		if(weight < 6000) {
+			postage = 1.00;
+		}
+		else if(weight >= 6000 && <= 10000) {
+			postage = 10.00;
+		}
+		else if(weight > 10000) {
+			postage = 15.00;
+		}
+		
+		return postage;
+	}
