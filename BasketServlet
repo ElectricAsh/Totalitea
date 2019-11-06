@@ -1,0 +1,76 @@
+package Model;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Util.DBConnector;
+
+/**
+ * Servlet implementation class BasketServlet
+ */
+@WebServlet("/BasketServlet")
+public class BasketServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public BasketServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		ShopInteraction s = new ShopInteraction();
+		
+		//String searchInfo = request.getParameter("Searchbar");
+		
+		s.addToBasket(2, 1); //The second param is replaced by the searched/selected sql id
+		s.addToBasket(2, 2);
+		s.addToBasket(2, 4);
+		
+		ArrayList<Product> basket = s.getBasket();
+				
+		for(Product product:basket) {
+		System.out.println(product.getProductID());
+		System.out.println(product.getProductName());
+		System.out.println(product.getDesc());
+		System.out.println(product.getCategory());
+		System.out.println(product.getSupplier());
+		
+		if(product instanceof Drinks) {
+			Drinks d = (Drinks)product;
+			System.out.println(d.getCaffieneAmt());
+			System.out.println(d.getMedicinalUse());
+			}
+			if(product instanceof Cake) {
+			Cake c = (Cake)product;
+			System.out.println("THIS IS A CAKE");
+			System.out.println("Has dairy" + c.getHasDairy());
+			System.out.println("Has nuts?" + c.getHasNuts());
+			System.out.println("Saturated fat" + c.getSaturatedFat());
+			System.out.println("Sugar amt" + c.getSugarAmt());
+			}
+		}
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
