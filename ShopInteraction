@@ -1,0 +1,173 @@
+package Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import Util.DBConnector;
+
+public class ShopInteraction {
+	ArrayList<Product> basket = new ArrayList<>();
+
+
+	public ShopInteraction() {
+
+	}
+
+
+	public ArrayList<Product> getProductBySearch(String searchQuery) {
+		/**
+		 * Below: try-with-resources - resources will be closed correctly at the end of the try block's execution.
+		 */
+		ArrayList<Product> productsFound = new ArrayList<>();
+		try {
+			Connection con = DBConnector.getConnection();	
+			PreparedStatement ps;
+			ps = con.prepareStatement( "SELECT * FROM Products WHERE ProductName LIKE ? "
+					+ "OR Description LIKE ? OR Category LIKE ?");
+
+			ps.setString(1, searchQuery+"%");
+			ps.setString(2, searchQuery+"%");
+			ps.setString(3, searchQuery+"%");
+
+			ResultSet resultSet = ps.executeQuery();
+			// if DRINK do this, IF CAKE dot his. 
+			// Can be hard to determine number of results without reading full ResultSet
+			//Look at category straight away. 
+			//Then choose item. 
+			while(resultSet.next()) {
+				if(resultSet.getString("Category").contains("Cake")){
+					Cake c = new Cake();
+					c.setProductID(resultSet.getInt("ProductID"));
+					c.setProductName(resultSet.getString("ProductName"));
+					c.setDesc(resultSet.getString("Description"));
+					c.setCategory(resultSet.getString("Category"));
+					c.setSupplier(resultSet.getString("Supplier"));
+					c.setPrice(resultSet.getInt("Price"));
+					c.setWeight(resultSet.getInt("Weight"));
+					c.setHasNuts(resultSet.getString("HasNuts"));
+					c.setHasDairy(resultSet.getString("HasDairy"));
+					c.setSaturatedFat(resultSet.getInt("SaturatedFat"));
+					c.setSugarAmt(resultSet.getInt("SugarAmt"));
+
+					productsFound.add(c);
+				}
+				else if(resultSet.getString("Category").contains("Drink")){
+					Drinks d = new Drinks();
+					d.setProductID(resultSet.getInt("ProductID"));
+					d.setProductName(resultSet.getString("ProductName"));
+					d.setDesc(resultSet.getString("Description"));
+					d.setCategory(resultSet.getString("Category"));
+					d.setSupplier(resultSet.getString("Supplier"));
+					d.setPrice(resultSet.getInt("Price"));
+					d.setWeight(resultSet.getInt("Weight"));
+					d.setMedicinalUse(resultSet.getString("MedicinalUse"));
+					d.setCaffieneAmt(resultSet.getInt("CaffeineAmt"));
+
+					//System.out.println(desc);
+					productsFound.add(d);
+
+				}
+			}
+			
+			return productsFound;
+			
+		} catch(SQLException e) {
+			System.err.println(e);
+			e.printStackTrace();
+		}
+		return null; 
+	}
+
+
+	public void addToBasket(int quantity, int productID) { //chosenWeight. 5g x 2 = 10g.grams = gram + basket items weight. 
+		if(quantity <= 0) {
+			productID = 0;
+		}
+		try {
+				Connection con = DBConnector.getConnection();	
+				PreparedStatement ps = con.prepareStatement( "SELECT * FROM Products WHERE productID = ?");
+				ps.setInt(1, productID);
+				ResultSet resultSet = ps.executeQuery();
+				
+				if(resultSet.next()) {
+					if(resultSet.getString("Category").contains("Cake")){
+						Cake c = new Cake();
+						c.setProductID(resultSet.getInt("ProductID"));
+						c.setProductName(resultSet.getString("ProductName"));
+						c.setDesc(resultSet.getString("Description"));
+						c.setCategory(resultSet.getString("Category"));
+						c.setSupplier(resultSet.getString("Supplier"));
+						c.setQuantity(quantity);
+						c.setPrice(resultSet.getInt("Price"));
+						c.setWeight(resultSet.getInt("Weight"));
+						c.setHasNuts(resultSet.getString("HasNuts"));
+						c.setHasDairy(resultSet.getString("HasDairy"));
+						c.setSaturatedFat(resultSet.getInt("SaturatedFat"));
+						c.setSugarAmt(resultSet.getInt("SugarAmt"));
+
+						basket.add(c);
+					}
+					else if(resultSet.getString("Category").contains("Drink")){
+						Drinks d = new Drinks();
+						d.setProductID(resultSet.getInt("ProductID"));
+						d.setProductName(resultSet.getString("ProductName"));
+						d.setDesc(resultSet.getString("Description"));
+						d.setCategory(resultSet.getString("Category"));
+						d.setSupplier(resultSet.getString("Supplier"));
+						d.setQuantity(quantity);
+						d.setPrice(resultSet.getInt("Price"));
+						d.setWeight(resultSet.getInt("Weight"));
+						d.setMedicinalUse(resultSet.getString("MedicinalUse"));
+						d.setCaffieneAmt(resultSet.getInt("CaffeineAmt"));
+
+						//System.out.println(desc);
+						basket.add(d);
+
+					}
+				}
+				
+				
+//				if(resultSet.next()) {
+//					Drinks d = new Drinks();
+//					d.setProductID(resultSet.getInt("ProductID"));
+//					d.setProductName(resultSet.getString("ProductName"));
+//					d.setDesc(resultSet.getString("Description"));
+//					d.setCategory(resultSet.getString("Category"));
+//					d.setSupplier(resultSet.getString("Supplier"));
+//					d.setPricePerGram(resultSet.getInt("PricePerGram"));
+//					d.setQuantity(quantity);
+//					d.setWeight(resultSet.getInt("Weight"));
+//					basket.add(d);
+//				}
+		} catch(SQLException e) {
+			System.err.println(e);
+			e.printStackTrace();
+		}
+	}
+
+
+	public double calculateBasket(int chosenWeight) { //ID 1 - espresso. Quantity of 2. 5g of each quantity.  10g. ID1 x 2Q = 10G. 
+		double price = 0; 
+		ArrayList<Product> basket = getBasket();
+		for(Product product: basket) {
+			int quantity = product.getQuantity();
+			double pricePerGram = product.getPricePerGram();
+			price = price + (pricePerGram*chosenWeight) * quantity;
+		}
+		return price;
+
+	}
+
+
+
+	public ArrayList<Product> getBasket() {
+		return basket;
+	}
+
+	public void setBasket(ArrayList<Product> basket) {
+		this.basket = basket;
+	}
+}
