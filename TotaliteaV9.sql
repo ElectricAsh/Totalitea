@@ -130,31 +130,31 @@ DECLARE
 	auser INT;
 	emcmsg VARCHAR2(120);
 BEGIN
-	insertProducts('herbal', 'Green Tea', 'green', 'reduces risk of cardiovascular diseases', 38, 'Drink', 'Clipper', 3.00, 160, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
-	insertProducts('caffeinated', 'Turkish black tea', 'Really strong black tea', 'reduce risk of diabetes', 0, 'Drink', 'Caykur', 6.10, 500, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
-	insertProducts('caffeinated', 'Americano', 'hot water added to a shot of espresso', 'essential nutrients and antioxidants', 83, 'Drink', 'Azera', 3.00, 100, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
-	insertProducts('caffeinated', 'Latte Macchiato', 'espresso topped with foamed milk', 'improves a persons mood', 150, 'Drink', 'Tassimo', 3.98, 264, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
-	insertProducts('caffeinated', 'Mocha', 'like a latte, but with added chocolate flavoring', 'None', 165, 'Drink', 'Nescafe', 2.65, 233, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
-	insertProducts('frosted cake', 'red velvet', 'Red velvet cake with a cream cheese frosting', 'None', 0, 'Cake', 'Sainsburys', 2.00, 350, 'no nuts', 'has dairy', 38.5, 10.2, aprod);
+	insertProducts('Herbal', 'Green Tea', 'Green', 'Reduces risk of cardiovascular diseases', 38, 'Drink', 'Clipper', 3.00, 160, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
+	insertProducts('Caffeinated', 'Turkish black tea', 'Really strong black tea', 'Reduce risk of diabetes', 0, 'Drink', 'Caykur', 6.10, 500, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
+	insertProducts('Caffeinated', 'Americano', 'Hot water added to a shot of espresso', 'Essential nutrients and antioxidants', 83, 'Drink', 'Azera', 3.00, 100, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
+	insertProducts('Caffeinated', 'Latte Macchiato', 'Espresso topped with foamed milk', 'Improves a persons mood', 150, 'Drink', 'Tassimo', 3.98, 264, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
+	insertProducts('Caffeinated', 'Mocha', 'Like a latte, but with added chocolate flavoring', 'None', 165, 'Drink', 'Nescafe', 2.65, 233, 'no nuts', 'no dairy', 0.0, 0.0, aprod);
+	insertProducts('Frosted cake', 'red velvet', 'Red velvet cake with a cream cheese frosting', 'None', 0, 'Cake', 'Sainsburys', 2.00, 350, 'no nuts', 'has dairy', 38.5, 10.2, aprod);
 	
 	insertUser('Stuart', '02-JUN-88', 'Stuart@hotmail.com', 'horse', '10 downing street London W7 1BW', 1, to_Date('01/11/2019 09:30:00', 'DD/MM/YYYY HH24:MI:SS'), auser, emcmsg);
 	DBMS_OUTPUT.PUT_LINE(emcmsg);
-	insertProducts('caffeinated', 'espresso', 'black', 'improve concentration', 212, 'Drink', 'azera', 4.20, 100, 'no nuts', 'no dairy', 0.0, 0.0, aprod); 
+	insertProducts('Caffeinated', 'Espresso', 'Black', 'Improve concentration', 212, 'Drink', 'Azera', 4.20, 100, 'no nuts', 'no dairy', 0.0, 0.0, aprod); 
 	insertOrders(seq_orderid.nextval, aprod, auser, to_Date('04/11/2019 15:10:00', 'DD/MM/YYYY HH24:MI:SS'));
-	insertProducts('herbal', 'Earl Grey', 'greeny grey', 'improve digestion', 95, 'Drink', 'Twinings', 4.00, 250, 'no nuts', 'no dairy', 0.0, 0.0, aprod); 
+	insertProducts('Herbal', 'Earl Grey', 'Greeny grey', 'Improve digestion', 95, 'Drink', 'Twinings', 4.00, 250, 'no nuts', 'no dairy', 0.0, 0.0, aprod); 
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('04/11/2019 15:10:00', 'DD/MM/YYYY HH24:MI:SS'));
-	insertProducts('caffeinated', 'Cappuccino', 'brown', 'source of useful antioxidant', 143, 'Drink', 'azera', 14.00, 560, 'no nuts', 'has dairy', 5.9, 1.4, aprod); 
+	insertProducts('Caffeinated', 'Cappuccino', 'Brown', 'Source of useful antioxidant', 143, 'Drink', 'Azera', 14.00, 560, 'no nuts', 'has dairy', 5.9, 1.4, aprod); 
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('04/11/2019 15:10:00', 'DD/MM/YYYY HH24:MI:SS'));
-	insertProducts('chocolate cake', 'Triple Chocolate Gateau', 'Chocolate sponge layered with chocolate cream mousse and chocolate flavoured sauce, decorated with milk, dark and white chocolate curls', 'None', 0, 'Cake', 'Sainsburys', 2.20, 600, 'no nuts', 'has dairy', 102.4, 47.4, aprod);
+	insertProducts('Chocolate cake', 'Triple Chocolate Gateau', 'Chocolate sponge layered with chocolate cream mousse and chocolate flavoured sauce, decorated with milk, dark and white chocolate curls', 'None', 0, 'Cake', 'Sainsburys', 2.20, 600, 'no nuts', 'has dairy', 102.4, 47.4, aprod);
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('04/11/2019 15:10:00', 'DD/MM/YYYY HH24:MI:SS'));
 	
 	insertUser('Dan', '02-sep-88', 'user1@hotmail.com', 'van', '15 RollsRoyce Drive  Derby  DE7 22A', 0, to_Date('03/11/2019 10:30:00', 'DD/MM/YYYY HH24:MI:SS'), auser, emcmsg);
 	DBMS_OUTPUT.PUT_LINE(emcmsg);
-	insertProducts('Sponge cake', 'Victoria Sponge cake', 'two layers of sponge with cream and jam in the middle', 'None', 0, 'Cake', 'sainsburys', 2.75, 345, 'no nuts', 'has dairy', 81.0, 18.0, aprod); 
+	insertProducts('Sponge cake', 'Victoria Sponge cake', 'Two layers of sponge with cream and jam in the middle', 'None', 0, 'Cake', 'Sainsburys', 2.75, 345, 'no nuts', 'has dairy', 81.0, 18.0, aprod); 
 	insertOrders(seq_orderid.nextval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));
-	insertProducts('Chocolate Cake', 'Belgian chocolate fudge cake', 'chocolate cake topped with belgian chocolate buttercream', 'None', 0, 'Cake', 'sainsburys', 2.75, 395, 'no nuts', 'has dairy', 115.2, 27.0, aprod);
+	insertProducts('Chocolate Cake', 'Belgian chocolate fudge cake', 'Chocolate cake topped with belgian chocolate buttercream', 'None', 0, 'Cake', 'Sainsburys', 2.75, 395, 'no nuts', 'has dairy', 115.2, 27.0, aprod);
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));
-	insertProducts('caffeinated', 'latte', 'half coffe half milk', 'helps reduce celulite', 77, 'Drink', 'LavAzza', 13.93, 630, 'no nuts', 'has dairy', 55.8, 14.4, aprod);   
+	insertProducts('Caffeinated', 'Latte', 'Half coffe half milk', 'helps reduce celulite', 77, 'Drink', 'LavAzza', 13.93, 630, 'no nuts', 'has dairy', 55.8, 14.4, aprod);   
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));
 	
 	insertUser('Ashley', '14-Jan-67', 'Ashely.clennel@fawn.com', 'horns', '23 VillageDrive Derby DE7 22A', 1, to_Date('05/11/2019 23:30:00', 'DD/MM/YYYY HH24:MI:SS'), auser, emcmsg);
