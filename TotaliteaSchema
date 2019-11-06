@@ -1,14 +1,16 @@
-Users(Username, Email, Password, IsAdmin, UserID, Register, Address)
+Users(Username, DOB, Email, Password, IsAdmin, UserID, Register, Address)
 Primary key: UserID
 Constraint: check admin value between 0 and 1
 Constraint: unique username
 Constraint: unique Email
 
-Products(ProductID, ProductName, Description, Category, Supplier, PricePerGram)
+Products(ProductID, ProductType, ProductName, Description, 
+MedicinalUse, CaffeineAmt, Category, Supplier, Price, Weight, HasNuts, HasDairy, SugarAmt, SaturatedFat)
 Primary key: ProductID
 
 
-Orders(OrderID, ProductID, UserID, Weight, OrderPlaced)
+Orders(OrderID, ProductID, UserID, OrderPlaced)
 Composite Primary key: OrderID, ProductID, UserID
+Constraint: orderID
 Foreign key: ProductID REFERENCE Products(ProductID)
 Foreign key: UserID REFERENCES Users(UserID)
