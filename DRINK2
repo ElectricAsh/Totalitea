@@ -1,0 +1,38 @@
+package Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import java.util.ArrayList;
+
+import Util.DBConnector;
+import oracle.net.aso.g;
+
+
+public class Drinks extends Product {
+
+	private String medicinalUse;
+	private int caffieneAmt;
+	
+	public Drinks() {
+		super();
+	}
+	
+	public String getMedicinalUse() {
+		return medicinalUse;
+	}
+
+	public void setMedicinalUse(String medicinalUse) {
+		this.medicinalUse = medicinalUse;
+	}
+
+	public int getCaffieneAmt() {
+		return caffieneAmt;
+	}
+
+	public void setCaffieneAmt(int caffieneAmt) {
+		this.caffieneAmt = caffieneAmt;
+	}
+}
