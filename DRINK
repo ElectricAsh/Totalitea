@@ -1,0 +1,47 @@
+package Model;
+
+public class Cake extends Product {
+	
+	private String hasNuts;
+	private String hasDairy;
+	private int sugarAmt;
+	private int saturatedFat;
+	
+	
+
+	public Cake() {
+		super();
+	}
+	
+	public String getHasNuts() {
+		return hasNuts;
+	}
+
+	public void setHasNuts(String hasNuts) {
+		this.hasNuts = hasNuts;
+	}
+
+	public String getHasDairy() {
+		return hasDairy;
+	}
+
+	public void setHasDairy(String hasDairy) {
+		this.hasDairy = hasDairy;
+	}
+
+	public int getSugarAmt() {
+		return sugarAmt;
+	}
+
+	public void setSugarAmt(int sugarAmt) {
+		this.sugarAmt = sugarAmt;
+	}
+
+	public int getSaturatedFat() {
+		return saturatedFat;
+	}
+
+	public void setSaturatedFat(int saturatedFat) {
+		this.saturatedFat = saturatedFat;
+	}
+}
