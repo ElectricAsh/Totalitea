@@ -1,0 +1,75 @@
+package Model;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Util.DBConnector;
+
+/**
+ * Servlet implementation class SearchServlet
+ */
+@WebServlet("/SearchServlet")
+public class SearchServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SearchServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		ShopInteraction p = new ShopInteraction();
+		
+		String searchInfo = request.getParameter("Searchbar");
+		
+		ArrayList<Product> product2 = p.getProductBySearch(searchInfo);		
+		
+		
+		
+		for(Product product:product2) {
+		System.out.println(product.getProductID());
+		System.out.println(product.getProductName());
+		System.out.println(product.getDesc());
+		System.out.println(product.getCategory());
+		System.out.println(product.getSupplier());
+		
+		if(product instanceof Drinks) {
+			Drinks d = (Drinks)product;
+			System.out.println(d.getCaffieneAmt());
+			System.out.println(d.getMedicinalUse());
+			}
+			if(product instanceof Cake) {
+			Cake c = (Cake)product;
+			System.out.println("THIS IS A CAKE");
+			System.out.println("Has dairy" + c.getHasDairy());
+			System.out.println("Has nuts?" + c.getHasNuts());
+			System.out.println("Saturated fat" + c.getSaturatedFat());
+			System.out.println("Sugar amt" + c.getSugarAmt());
+			}
+		}
+		
+	}
+
+}
