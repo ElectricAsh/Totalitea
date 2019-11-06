@@ -1,0 +1,247 @@
+package Model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+class ShopInteractionTest {
+
+	
+	@Test
+	public void getProductBySearchTest() {
+		ShopInteraction s = new ShopInteraction();
+		ArrayList<Product> products = s.getProductBySearch("Earl");
+		assertEquals(1, products.size());
+		assertEquals(products.get(0).getProductName(), "Earl Grey");
+		assertEquals(products.get(0).getProductID(), 2);
+		assertEquals(products.get(0).getDesc(), "grey");
+		assertEquals(products.get(0).getCategory(), "Drink");
+		assertEquals(products.get(0).getSupplier(), "Twinings");
+		assertEquals(products.get(0).getPrice(), 4.0);
+		assertEquals(products.get(0).getQuantity(), 1);
+		assertEquals(products.get(0).getWeight(), 250);
+//		if(products.get(0) instanceof Drinks)
+//		Drinks d = (Drinks)products.get(0);
+		
+
+		ArrayList<Product> product = s.getProductBySearch("Drink");
+		assertEquals(4, product.size());
+		assertEquals(product.get(0).getProductName(), "espresso");
+		assertEquals(product.get(0).getProductID(), 1);
+		assertEquals(product.get(0).getDesc(), "black");
+		assertEquals(product.get(0).getCategory(), "Drink");
+		assertEquals(product.get(0).getSupplier(), "azera");
+		assertEquals(product.get(0).getPrice(), 4.2);
+		assertEquals(product.get(0).getWeight(), 100);
+//		
+		assertEquals(product.get(1).getProductName(), "Earl Grey");
+		assertEquals(product.get(1).getProductID(), 2);
+		assertEquals(product.get(1).getDesc(), "grey");
+		assertEquals(product.get(1).getCategory(), "Drink");
+		assertEquals(product.get(1).getSupplier(), "Twinings");
+		assertEquals(product.get(1).getPrice(), 4.0);
+		assertEquals(product.get(1).getWeight(), 250);
+////		
+		assertEquals(product.get(2).getProductName(), "Cappuccino");
+		assertEquals(product.get(2).getProductID(), 3);
+		assertEquals(product.get(2).getDesc(), "brown");
+		assertEquals(product.get(2).getCategory(), "Drink");		
+		assertEquals(product.get(2).getSupplier(), "azera");
+		assertEquals(product.get(2).getWeight(), 560);
+		assertEquals(product.get(2).getPrice(), 14);
+		
+		ArrayList<Product> products3 = s.getProductBySearch("Cake");
+		
+		assertEquals(products3.get(1).getProductName(), "Victoria Sponge cake");
+		assertEquals(products3.get(1).getProductID(), 5);
+		assertEquals(products3.get(1).getDesc(), "two layers of sponge with cream and jam in the middle");// "Chocolate sponge layered with chocolate cream mousse and chocolate flavoured sauce, decorated with milk, dark and white chocolate curls");
+		assertEquals(products3.get(1).getCategory(), "Cake");		
+		assertEquals(products3.get(1).getSupplier(), "sainsburys");
+		assertEquals(products3.get(1).getWeight(), 345);
+		assertEquals(products3.get(1).getPrice(), 2.75);
+////		
+	}
+	
+	@Test
+	public void addToBasketTest() {
+		ShopInteraction s = new ShopInteraction();
+		s.addToBasket(5, 1);
+		
+		ArrayList<Product> basket = s.getBasket();
+		assertEquals(basket.size(), 1);
+		assertEquals(basket.get(0).getProductID(), 1);
+		assertEquals(basket.get(0).getProductName(), "espresso");
+		assertEquals(basket.get(0).getDesc(), "black");
+		assertEquals(basket.get(0).getSupplier(), "azera");
+		assertEquals(basket.get(0).getCategory(), "Drink");
+		assertEquals(basket.get(0).getPrice(), 4.2);
+		assertEquals(basket.get(0).getQuantity(), 5);
+		assertEquals(basket.get(0).getWeight(), 100);
+		
+		
+		s.addToBasket(3, 2);
+		assertEquals(basket.size(), 2);
+		assertEquals(basket.get(1).getProductID(), 2);
+		assertEquals(basket.get(1).getProductName(), "Earl Grey");
+		assertEquals(basket.get(1).getDesc(), "grey");
+		assertEquals(basket.get(1).getSupplier(), "Twinings");
+		assertEquals(basket.get(1).getCategory(), "Drink");
+		assertEquals(basket.get(1).getPrice(), 4.0);
+		assertEquals(basket.get(1).getQuantity(), 3);
+		assertEquals(basket.get(1).getWeight(), 250);
+		
+		s.addToBasket(8, 3);
+		assertEquals(basket.size(), 3);
+		assertEquals(basket.get(2).getProductID(), 3);
+		assertEquals(basket.get(2).getProductName(), "Cappuccino");
+		assertEquals(basket.get(2).getDesc(), "brown");
+		assertEquals(basket.get(2).getSupplier(), "azera");
+		assertEquals(basket.get(2).getCategory(), "Drink");
+		assertEquals(basket.get(2).getPrice(), 14.0);
+		assertEquals(basket.get(2).getQuantity(), 8);
+		assertEquals(basket.get(2).getWeight(), 560);
+		
+		//Testing if an unknown ID doesn't add to the basket size\\
+		s.addToBasket(3, 9);
+		assertEquals(basket.size(), 3);
+		
+		s.addToBasket(3, 0);
+		assertEquals(basket.size(), 3);
+		
+		s.addToBasket(3, -1);
+		assertEquals(basket.size(), 3);
+		}
+	
+
+	@Test
+	public void printAllProducts() {
+		System.out.println("BELOW IS PRINTING ALL PRODUCTS______________");  
+		ShopInteraction p = new ShopInteraction();
+		
+		ArrayList<Product> allP = p.getAllProducts();
+		
+		for(Product product:allP) {
+			System.out.println(product.getProductID());
+			System.out.println(product.getProductName());
+			System.out.println(product.getDesc());
+			System.out.println(product.getCategory());
+			System.out.println(product.getSupplier());
+			
+			if(product instanceof Drinks) {
+				Drinks d = (Drinks)product;
+				System.out.println(d.getCaffieneAmt());
+				System.out.println(d.getMedicinalUse());
+				}
+				if(product instanceof Cake) {
+				Cake c = (Cake)product;
+				System.out.println("THIS IS A CAKE");
+				System.out.println("Has dairy" + c.getHasDairy());
+				System.out.println("Has nuts?" + c.getHasNuts());
+				System.out.println("Saturated fat" + c.getSaturatedFat());
+				System.out.println("Sugar amt" + c.getSugarAmt());
+				}
+				
+		}
+	}
+	}
+	
+//	@Test
+//	public void calculatePrice() {
+//	
+//		//Calculating the amount in the basket. One quantity of the ID 2 is £8pGram. 
+//		//The grams requested is 5. Therefore one item is (8*5)*1 = 40. 3 items of ID 2 is 40*3, therefore we expect £120. 
+//		ShopInteraction ShopInteraction = new ShopInteraction();
+//		ShopInteraction.addToBasket(3, 2);
+//
+//		ArrayList<ShopInteraction> basket = ShopInteraction.getBasket();
+//		
+//		assertEquals(basket.size(), 1);
+//		assertEquals(basket.get(0).getQuantity(), 3);
+//		
+//		double price = ShopInteraction.calculateBasket(5);
+//		
+//		assertEquals(price, 120.0);	
+//		
+//		
+//		//Calculating the amount in the basket. One quantity of ID 1 is £1pGram.
+//		//The grams requested is 5. Therefore one item is (1*1)*5 = £5. 5 items of ID 1 is 5*5, therefore we expect £25. 
+//		ShopInteraction ShopInteraction1 = new ShopInteraction();
+//		ShopInteraction1.addToBasket(5, 1);
+//
+//		ArrayList<ShopInteraction> basket1 = ShopInteraction1.getBasket();
+//		
+//		assertEquals(basket1.size(), 1);
+//		assertEquals(basket1.get(0).getQuantity(), 5);
+//		
+//		double price1 = ShopInteraction1.calculateBasket(5);
+//		
+//		assertEquals(price1, 25);
+//		
+//		
+//		//Checking if two addToBasket methods provide the expected result.
+//		//Calculations shown below. 
+//		ShopInteraction ShopInteraction2 = new ShopInteraction();
+//		ShopInteraction2.addToBasket(5, 1); //1*10 = 10*5 = 50
+//		ShopInteraction2.addToBasket(2, 2); //8*10 = 80*2 = 160. Expecting 210. 
+//		
+//		ArrayList<ShopInteraction> basket2 = ShopInteraction2.getBasket();
+//		
+//		assertEquals(basket2.size(), 2);
+//		assertEquals(basket2.get(0).getQuantity(), 5);
+//		assertEquals(basket2.get(1).getQuantity(), 2);
+//		
+//		double price2 = ShopInteraction2.calculateBasket(10);
+//		
+//		assertEquals(price2, 210);
+//		
+//		
+//		//Checking if an addToBasket is given an invalid ID, that the price won't be affected and the expected price 
+//		//An invalid ID means nothing can be found through an SQL query as its impossible by our design (ID starts at 1 incremented)
+//		//the result (25).
+//		ShopInteraction ShopInteraction3 = new ShopInteraction();
+//		ShopInteraction3.addToBasket(5, 1); //1*5 = 5*5 = 25
+//		ShopInteraction3.addToBasket(2, 0); //8*10 = 80*2 = 160. Expecting 210. 
+//		
+//		ArrayList<ShopInteraction> basket3 = ShopInteraction3.getBasket();
+//		
+//		assertEquals(basket3.size(), 1);
+//		assertEquals(basket3.get(0).getQuantity(), 5);
+//		
+//		double price3 = ShopInteraction3.calculateBasket(5);
+//		
+//		assertEquals(price3, 25);
+//		
+//		//Checking if the method doesn't add the item to the basket if the quantity provided 
+//		//is less than, or equal to, 0. If the quantity is 0, then it sets the productID to 0, which therefore
+//		//nullifies the sql query and stops the item being added to the basket. 
+//		ShopInteraction ShopInteraction4 = new ShopInteraction();
+//		ShopInteraction4.addToBasket(5, 1); //1*5 = 5*5 = 25
+//		ShopInteraction4.addToBasket(0, 1); //8*10 = 80*2 = 160. Expecting 210. 
+//		
+//		ArrayList<ShopInteraction> basket4 = ShopInteraction4.getBasket();
+//		
+//		assertEquals(basket4.size(), 1);
+//		assertEquals(basket4.get(0).getQuantity(), 5);
+//		
+//		double price4 = ShopInteraction4.calculateBasket(5);
+//		
+//		assertEquals(price4, 25);
+//		
+//		//Testing if both values are 0.
+//		ShopInteraction ShopInteraction5 = new ShopInteraction();
+//		ShopInteraction5.addToBasket(0, 0);
+//		ShopInteraction5.addToBasket(3, 1); //1*5 = 5*3 = 15
+//		ShopInteraction5.addToBasket(0, 1); //8*10 = 80*2 = 160. Expecting 210. 
+//		
+//		ArrayList<ShopInteraction> basket5 = ShopInteraction5.getBasket();
+//		
+//		assertEquals(basket5.size(), 1);
+//		assertEquals(basket5.get(0).getQuantity(), 3);
+//		
+//		double price5 = ShopInteraction5.calculateBasket(5);
+//		
+//		assertEquals(price5, 15);
+//		
+//	}
