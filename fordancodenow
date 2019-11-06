@@ -1,0 +1,55 @@
+public ArrayList<Product> getAllProducts(){
+		ArrayList<Product> productsFound = new ArrayList<>();
+		try {
+			Connection con = DBConnector.getConnection();	
+			PreparedStatement ps;
+			ps = con.prepareStatement( "SELECT * FROM Products");
+
+			ResultSet resultSet = ps.executeQuery();
+			// if DRINK do this, IF CAKE dot his. 
+			// Can be hard to determine number of results without reading full ResultSet
+			//Look at category straight away. 
+			//Then choose item. 
+			while(resultSet.next()) {
+				if(resultSet.getString("Category").contains("Cake")){
+					Cake c = new Cake();
+					c.setProductID(resultSet.getInt("ProductID"));
+					c.setProductName(resultSet.getString("ProductName"));
+					c.setDesc(resultSet.getString("Description"));
+					c.setCategory(resultSet.getString("Category"));
+					c.setSupplier(resultSet.getString("Supplier"));
+					c.setPrice(resultSet.getDouble("Price"));
+					c.setWeight(resultSet.getInt("Weight"));
+					c.setHasNuts(resultSet.getString("HasNuts"));
+					c.setHasDairy(resultSet.getString("HasDairy"));
+					c.setSaturatedFat(resultSet.getInt("SaturatedFat"));
+					c.setSugarAmt(resultSet.getInt("SugarAmt"));
+
+					productsFound.add(c);
+				}
+				else if(resultSet.getString("Category").contains("Drink")){
+					Drinks d = new Drinks();
+					d.setProductID(resultSet.getInt("ProductID"));
+					d.setProductName(resultSet.getString("ProductName"));
+					d.setDesc(resultSet.getString("Description"));
+					d.setCategory(resultSet.getString("Category"));
+					d.setSupplier(resultSet.getString("Supplier"));
+					d.setPrice(resultSet.getDouble("Price"));
+					d.setWeight(resultSet.getInt("Weight"));
+					d.setMedicinalUse(resultSet.getString("MedicinalUse"));
+					d.setCaffieneAmt(resultSet.getInt("CaffeineAmt"));
+
+					//System.out.println(desc);
+					productsFound.add(d);
+
+				}
+			}
+			
+			return productsFound;
+			
+		} catch(SQLException e) {
+			System.err.println(e);
+			e.printStackTrace();
+		}
+		return null; 
+	}
