@@ -1,0 +1,54 @@
+Presentations
+
+- 20 minutes presenting
+- 10 minutes answering questions
+	
+-First half delivered to client:
+	- Benefits of solution to client
+	- Describe given task and solution
+	- Explain project goals
+	- Demonstrate / justify implemented features
+	- Diagrams CAN be included if fit our narrative. Only to explain solution design
+	  or product features. Not much technical details (Look in to how past presentations
+	  did this)
+	
+	- Include business analysis. Contain concrete suggestions to Totalitea's current
+	  business logic
+	  
+-Second half / remaining time:
+	- Include diagrams with technical details of them
+	- Demonstration of good working and coding practices. (Show tests, SQL procedures
+	  to protect from SQL injection, exception handling, resourse management etc.)
+	- Any other technical information we deem necessary to look competent(see what
+		other cohorts have included)
+	
+	
+
+	
+	
+What to take from previous Cohort presentations:
+
+- Screenshot a few slides of what their presentation actually looks like and put in 
+  a word document. 
+		- Used to judge how we want slides to look. e.g colour scheme
+		
+- Screenshot any ERD, Component or Class diagrams they have to make sure ours are right
+	- Write out how synopsis of how they describe diagrams. e.g if they do it during client section or if during the talk about java 
+	  A few sentences of what they actually say
+	
+- Approx how long is the website demo. 
+	- Are they explaining design choices?
+	- Are they just showing and pointing out the features on there?
+	- Do they go through the musts and shoulds etc.?
+	- Do they talk about previous client discussions?
+	
+- See how they present their data analysis.
+	- Approx how long, how many graphs. 
+	- Do they mention how it changed their design and show this change?
+	- Do they mention the clients previous business logic?
+	
+- How are they demonstrating the code and good practices.
+	- are they showing screenshots of code or going through their eclipse?
+	- do they even show code?
+	- how do they demonstrate good working practice?(how they worked as a team?resource management)
+	- What other tech information did they include to look competent?
