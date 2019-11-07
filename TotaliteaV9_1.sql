@@ -133,8 +133,8 @@ DECLARE
 	auser INT;
 	emcmsg VARCHAR2(120);
 BEGIN
-	insertProducts('Herbal', 'Green Tea', 'Tea - One of the healthiest beverages on the planet.', 'Reduces risk of cardiovascular diseases', 38, 'Drink', '', 'Clipper', 3.00, 160, 'No Nuts', 'No Dairy', 0.0, 0.0, aprod);
-	insertProducts('Caffeinated', 'Turkish Black Tea', 'Tea - Incredibly strong black tea', 'Reduces risk of diabetes', 0, 'Drink', '', 'Caykur', 6.10, 500, 'No Nuts', 'No Dairy', 0.0, 0.0, aprod);
+	insertProducts('Herbal', 'Green Tea', 'Tea - Green - One of the healthiest beverages on the planet.', 'Reduces risk of cardiovascular diseases', 38, 'Drink', '', 'Clipper', 3.00, 160, 'No Nuts', 'No Dairy', 0.0, 0.0, aprod);
+	insertProducts('Caffeinated', 'Turkish Black Tea', 'Tea - Black - Incredibly strong black tea', 'Reduces risk of diabetes', 0, 'Drink', '', 'Caykur', 6.10, 500, 'No Nuts', 'No Dairy', 0.0, 0.0, aprod);
 	insertProducts('Caffeinated', 'Americano', 'Coffee - Hot water added to a shot of espresso', 'Holds essential nutrients and antioxidants', 83, 'Drink', '', 'Azera', 3.00, 100, 'No Nuts', 'No Dairy', 0.0, 0.0, aprod);
 	insertProducts('Caffeinated', 'Latte Macchiato', 'Coffee - Espresso topped with foamed milk', 'Improves the mood of the consumer', 150, 'Drink', '', 'Tassimo', 3.98, 264, 'No Nuts', 'No Dairy', 7.0, 0.0, aprod);
 	insertProducts('Caffeinated', 'Mocha', 'Coffee - Like a latte, but with added chocolate flavouring', 'None', 165, 'Drink', '', 'Nescafe', 2.65, 233, 'No Nuts', 'No Dairy', 25.0, 0.0, aprod);
@@ -144,7 +144,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE(emcmsg);
 	insertProducts('Caffeinated', 'Espresso', 'Coffee - Full-flavoured, concentrated form of coffee.', 'Improves concentration', 212, 'Drink', '', 'Azera', 4.20, 100, 'No Nuts', 'No Dairy', 0.0, 0.0, aprod); 
 	insertOrders(seq_orderid.nextval, aprod, auser, to_Date('04/11/2019 15:10:00', 'DD/MM/YYYY HH24:MI:SS'));
-	insertProducts('Herbal', 'Earl Grey', 'Tea - One of the most recognised flavoured teas', 'Improves digestio', 95, 'Drink', '', 'Twinings', 4.00, 250, 'No Nuts', 'No Dairy', 0.0, 0.0, aprod); 
+	insertProducts('Herbal', 'Earl Grey', 'Tea - Black - One of the most recognised flavoured teas', 'Improves digestio', 95, 'Drink', '', 'Twinings', 4.00, 250, 'No Nuts', 'No Dairy', 0.0, 0.0, aprod); 
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('04/11/2019 15:10:00', 'DD/MM/YYYY HH24:MI:SS'));
 	insertProducts('Caffeinated', 'Cappuccino', 'Coffee - A drink typically composed of double espresso and hot milk.', 'Source of useful antioxidants', 143, 'Drink', '', 'Azera', 14.00, 560, 'No Nuts', 'Has Dairy', 5.9, 1.4, aprod); 
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('04/11/2019 15:10:00', 'DD/MM/YYYY HH24:MI:SS'));
@@ -158,8 +158,7 @@ BEGIN
 	insertProducts('Chocolate Cake', 'Belgian Chocolate Fudge Cake', 'Cake - Chocolate cake topped with belgian chocolate buttercream.', 'None', 0, 'Cake', 'Espresso', 'The Handmade Cake Company', 2.75, 395, 'No Nuts', 'Has Dairy', 115.2, 27.0, aprod);
 	insertOrders(seq_orderid.currval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));
 	insertProducts('Caffeinated', 'Latte', 'Coffee - Half coffee - Half milk', 'A latte a day keeps the doctor way.', 77, 'Drink', '', 'LavAzza', 13.93, 630, 'No Nuts', 'Has Dairy', 18.8, 14.4, aprod);   
-	insertOrders(seq_orderid.currval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));
-	
+	insertOrders(seq_orderid.currval, aprod, auser, to_Date('07/11/2019 17:10:00', 'DD/MM/YYYY HH24:MI:SS'));	
 END;
 /
 COMMIT;
