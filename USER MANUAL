@@ -1,0 +1,35 @@
+ • Make sure to have installed:
+-	Tomcat
+-	Eclipse
+-	Browser e.g Chrome, Firefox
+-	Oracle Database
+ • Right click on MasterHome.jsp in Eclipse (in the WebContent folder)
+ • Click Run as --> Run on Server / This will bring the web page up
+ • Registering a user
+-	Click on ‘Register’ button
+-	Input Username, Password, Email, Address and click Submit (will take you back to homepage)
+-	Then click on Log On and log in with created user
+-	Check just below Totalitea log where this will state your username
+ • Logging in:
+-	Click Log On
+-	Enter username and password
+-	Click ‘Submit’ or press enter
+-	To log off you can click the button on the top right of the screen
+ • Searching for a product / Adding to basket:
+-	Type in on Search Bar if looking for something specific. Press enter to start search
+-	If you want to look through general items then go to All Products
+-	Type in quantity that you desire and click Add To Basket
+-	If you would like more info then click the more info button on side of screen
+ • Purchasing Products:
+-	Click on ‘Basket’
+-	If you are having second thoughts then you can empty basket
+-	Or you can find the price of each item bought along with shipping costs and a running total
+-	To complete the order, click purchase
+-	Fill out card details and click final purchase button (Card details are currently a placeholder as the client will replace this with their secure functionality) 
+-	This will show you a purchase list and prompt you to go back to the home screen
+-	You will then notice that your basket is empty and you are free to buy more products
+
+
+
+
+
