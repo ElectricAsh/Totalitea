@@ -1,20 +1,8 @@
-	public void addUserToDatabase(String username, String pwd, String email, String address) {  
-		try {
-				Connection con = DBConnector.getConnection();	//DD/MM/YYYY
-				//PreparedStatement ps = con.prepareStatement( "INSERT INTO Users (Username 1, Email 2, Password 3, Address 4, IsAdmin 5, Register 6);
-				PreparedStatement ps = con.prepareStatement("INSERT INTO Users (Username, Email, Password, Address, isAdmin, Register) "
-															+ " VALUES (?, ?, ?, ?, ?, sysdate)");
-				ps.setString(1, username);
-				ps.setString(2, email);
-				ps.setString(3, pwd);
-				ps.setString(4, address);
-				ps.setInt(5, 0);
-				//ps.setString(6, "sysdate");
-				
-				ps.executeQuery();			
+	ShopInteraction s = new ShopInteraction();
 		
-		} catch(SQLException e) {
-			System.err.println(e);
-			e.printStackTrace();
-		}
-	}
+		String username = "bob";
+		String pwd = "bob2";
+		String email = "alf-s@hotmail.co.uk";
+		String address = "41 dog drive H78 IID";
+		
+		s.addUserToDatabase(username, pwd, email, address);
