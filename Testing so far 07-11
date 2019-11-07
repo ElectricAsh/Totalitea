@@ -1,0 +1,165 @@
+package Model;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+class ShopInteractionTest {
+
+	
+	@Test
+	public void getProductBySearchTest() {
+		ShopInteraction s = new ShopInteraction();
+		ArrayList<Product> products = s.getProductBySearch("Earl");
+		assertEquals(1, products.size());
+		assertEquals(products.get(0).getProductName(), "Earl Grey");
+		assertEquals(products.get(0).getProductID(), 2);
+		assertEquals(products.get(0).getDesc(), "grey");
+		assertEquals(products.get(0).getCategory(), "Drink");
+		assertEquals(products.get(0).getSupplier(), "Twinings");
+		assertEquals(products.get(0).getPrice(), 4.0);
+		assertEquals(products.get(0).getQuantity(), 1);
+		assertEquals(products.get(0).getWeight(), 250);
+//		if(products.get(0) instanceof Drinks)
+//		Drinks d = (Drinks)products.get(0);
+		
+
+		ArrayList<Product> product = s.getProductBySearch("Drink");
+		assertEquals(4, product.size());
+		assertEquals(product.get(0).getProductName(), "espresso");
+		assertEquals(product.get(0).getProductID(), 1);
+		assertEquals(product.get(0).getDesc(), "black");
+		assertEquals(product.get(0).getCategory(), "Drink");
+		assertEquals(product.get(0).getSupplier(), "azera");
+		assertEquals(product.get(0).getPrice(), 4.2);
+		assertEquals(product.get(0).getWeight(), 100);
+//		
+		assertEquals(product.get(1).getProductName(), "Earl Grey");
+		assertEquals(product.get(1).getProductID(), 2);
+		assertEquals(product.get(1).getDesc(), "grey");
+		assertEquals(product.get(1).getCategory(), "Drink");
+		assertEquals(product.get(1).getSupplier(), "Twinings");
+		assertEquals(product.get(1).getPrice(), 4.0);
+		assertEquals(product.get(1).getWeight(), 250);
+////		
+		assertEquals(product.get(2).getProductName(), "Cappuccino");
+		assertEquals(product.get(2).getProductID(), 3);
+		assertEquals(product.get(2).getDesc(), "brown");
+		assertEquals(product.get(2).getCategory(), "Drink");		
+		assertEquals(product.get(2).getSupplier(), "azera");
+		assertEquals(product.get(2).getWeight(), 560);
+		assertEquals(product.get(2).getPrice(), 14);
+		
+		ArrayList<Product> products3 = s.getProductBySearch("Cake");
+		
+		assertEquals(products3.get(1).getProductName(), "Victoria Sponge cake");
+		assertEquals(products3.get(1).getProductID(), 5);
+		assertEquals(products3.get(1).getDesc(), "two layers of sponge with cream and jam in the middle");// "Chocolate sponge layered with chocolate cream mousse and chocolate flavoured sauce, decorated with milk, dark and white chocolate curls");
+		assertEquals(products3.get(1).getCategory(), "Cake");		
+		assertEquals(products3.get(1).getSupplier(), "sainsburys");
+		assertEquals(products3.get(1).getWeight(), 345);
+		assertEquals(products3.get(1).getPrice(), 2.75);
+////		
+	}
+	
+	@Test
+	public void addToBasketTest() {
+		ShopInteraction s = new ShopInteraction();
+		s.addToBasket(5, 1);
+		
+		ArrayList<Product> basket = s.getBasket();
+		assertEquals(basket.size(), 1);
+		assertEquals(basket.get(0).getProductID(), 1);
+		assertEquals(basket.get(0).getProductName(), "espresso");
+		assertEquals(basket.get(0).getDesc(), "black");
+		assertEquals(basket.get(0).getSupplier(), "azera");
+		assertEquals(basket.get(0).getCategory(), "Drink");
+		assertEquals(basket.get(0).getPrice(), 4.2);
+		assertEquals(basket.get(0).getQuantity(), 5);
+		assertEquals(basket.get(0).getWeight(), 100);
+		
+		
+		s.addToBasket(3, 2);
+		assertEquals(basket.size(), 2);
+		assertEquals(basket.get(1).getProductID(), 2);
+		assertEquals(basket.get(1).getProductName(), "Earl Grey");
+		assertEquals(basket.get(1).getDesc(), "grey");
+		assertEquals(basket.get(1).getSupplier(), "Twinings");
+		assertEquals(basket.get(1).getCategory(), "Drink");
+		assertEquals(basket.get(1).getPrice(), 4.0);
+		assertEquals(basket.get(1).getQuantity(), 3);
+		assertEquals(basket.get(1).getWeight(), 250);
+		
+		s.addToBasket(8, 3);
+		assertEquals(basket.size(), 3);
+		assertEquals(basket.get(2).getProductID(), 3);
+		assertEquals(basket.get(2).getProductName(), "Cappuccino");
+		assertEquals(basket.get(2).getDesc(), "brown");
+		assertEquals(basket.get(2).getSupplier(), "azera");
+		assertEquals(basket.get(2).getCategory(), "Drink");
+		assertEquals(basket.get(2).getPrice(), 14.0);
+		assertEquals(basket.get(2).getQuantity(), 8);
+		assertEquals(basket.get(2).getWeight(), 560);
+		
+		//Testing if an unknown ID doesn't add to the basket size\\
+		s.addToBasket(3, 9);
+		assertEquals(basket.size(), 3);
+		
+		s.addToBasket(3, 0);
+		assertEquals(basket.size(), 3);
+		
+		s.addToBasket(3, -1);
+		assertEquals(basket.size(), 3);
+		}
+	
+
+	//Testing if all items in the table prints out with the correct values.
+	@Test
+	public void printAllProducts() {
+		System.out.println("BELOW IS PRINTING ALL PRODUCTS______________");  
+		ShopInteraction p = new ShopInteraction();
+		
+		ArrayList<Product> allP = p.getAllProducts();
+		
+		for(Product product:allP) {
+			System.out.println(product.getProductID());
+			System.out.println(product.getProductName());
+			System.out.println(product.getDesc());
+			System.out.println(product.getCategory());
+			System.out.println(product.getSupplier());
+			
+			if(product instanceof Drinks) {
+				Drinks d = (Drinks)product;
+				System.out.println(d.getCaffieneAmt());
+				System.out.println(d.getMedicinalUse());
+				}
+				if(product instanceof Cake) {
+				Cake c = (Cake)product;
+				System.out.println("THIS IS A CAKE");
+				System.out.println("Has dairy" + c.getHasDairy());
+				System.out.println("Has nuts?" + c.getHasNuts());
+				System.out.println("Saturated fat" + c.getSaturatedFat());
+				System.out.println("Sugar amt" + c.getSugarAmt());
+				}
+				
+		}
+	}
+	
+	@Test
+	public void getSingleProductTest() {
+		ShopInteraction p = new ShopInteraction();
+		
+		Drinks d =(Drinks)p.getProduct(1);
+		assertEquals(d.productID, 1);
+		assertEquals(d.getProductName(), "espresso");
+		assertEquals(d.getDesc(), "black");
+		assertEquals(d.getCaffieneAmt(), 212);
+		assertEquals(d.getCategory(), "Drink");
+		assertEquals(d.getSupplier(), "azera");
+		assertEquals(d.getMedicinalUse(), "improve concentration");
+	}
+	
+}
+	
